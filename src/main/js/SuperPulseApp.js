@@ -1,6 +1,6 @@
 //mc:using Toybox.Application; 
 
-class BigHeartFieldApp /*mc:extends Application.AppBase*/ {
+class SuperPulseApp /*mc:extends Application.AppBase*/ {
 
     //! onStart() is called on application start uddp
     /*mc:function*/ onStart() {
@@ -12,7 +12,7 @@ class BigHeartFieldApp /*mc:extends Application.AppBase*/ {
 
     //! Return the initial view of your application here
     /*mc:function*/ getInitialView() {
-        return [ new BigHeartField() ];
+        return [ new SuperPulseField() ];
     }
 
 }

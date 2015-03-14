@@ -22,11 +22,11 @@
 
   <script src="../../../target/ScalableTextDrawer.js"></script>
   <script src="../../../target/VirtualDisplay.js"></script>
-  <script src="../../../target/BigHeartField.js"></script>
+  <script src="../../../target/SuperPulseField.js"></script>
 
 </head>
 <body style="text-align: center;">
-<h1>BigHeart Simulator</h1>
+<h1>SuperPulse Simulator</h1>
 
 	<canvas id="connectiq" width="640" height="480">
 
@@ -35,7 +35,7 @@
 <script type="text/javascript">
 	
 var dc2 = document.getElementById("connectiq").getContext("2d");
-var field = new BigHeartField();
+var field = new SuperPulseField();
 var fieldSimulator = new FieldSimulator(dc2, field, new Rectangle( 10, 10, 620, 450));
 fieldSimulator.update();
 

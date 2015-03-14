@@ -35,7 +35,7 @@ class FieldSimulator {
 	}
 
 	random() {
-		var val = Math.floor(Math.random() * 60) + 150;
+		var val = Math.floor(Math.random() * 150) + 70;
 		return val;
 	}
 
