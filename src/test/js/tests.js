@@ -82,3 +82,16 @@ QUnit.test( "VirtualDisplay::indexToPos happy", function( assert ) {
 	assert.equal(pos.y, 4, "Expected y 4")
 
 });
+
+QUnit.test( "Font::getCharData happy", function( assert ) {
+	var font = new Font();
+
+	var data = new Array(15);
+	font.getCharData('2', data);
+	console.log(data);
+	assert.equal(data[0], 1, "Expected 1");
+	assert.equal(data[1], 1, "Expected 1");
+	assert.equal(data[2], 1, "Expected 1");
+	assert.equal(data[3], 0, "Expected 0");
+
+});
