@@ -13,4 +13,9 @@ class Dimension {
 		return "{ width: " + this.width + ", height: " + this.height + " }";
 	}
 
+	/*mc:function*/ set(width, height) {
+		this.width = width;
+		this.height = height;
+	}
+
 }

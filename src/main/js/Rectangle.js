@@ -13,8 +13,8 @@ class Rectangle {
 		this.height = height;
 	}
 
-	/*mc:function*/ getDimension() {
-		return new Dimension(this.width, this.height);
+	/*mc:function*/ getDimension(returnDim) {
+		returnDim.set(this.width, this.height);
 	}
 
 	/*mc:function*/ set( x, y, width, height) {

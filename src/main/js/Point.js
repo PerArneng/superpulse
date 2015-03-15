@@ -14,4 +14,9 @@ class Point {
 		return "{ x: " + this.x + ", y: " + this.y + " }";
 	}
 
+	/*mc:function*/ set( x, y) {
+		this.x = x;
+		this.y = y;
+	}
+
 }

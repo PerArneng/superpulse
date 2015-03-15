@@ -1,29 +1,27 @@
 
 class VirtualDisplay {
 	
-	/*mc:function*/ pixelDimensions(virtDim, targetDim) {
+	/*mc:function*/ pixelDimensions(virtDim, targetDim, returnDim) {
 
 		var pixelWidth = targetDim.width / virtDim.width;
 		var pixelHeight = targetDim.height / virtDim.height;
 
-		return new Dimension(pixelWidth, pixelHeight);
+		returnDim.set(pixelWidth, pixelHeight);
 	}
 
-	/*mc:function*/ translatePixel(point, virtDim, targetBounds) {
-
-		var targetDim = targetBounds.getDimension();
-		var pxlDim = this.pixelDimensions(virtDim, targetDim);
+	/*mc:function*/ translatePixel(point, virtDim, targetBounds, targetDim, pxlDim, returnPos) {
 
 		var xpos = point.x * pxlDim.width + targetBounds.x;
 		var ypos = point.y * pxlDim.height + targetBounds.y;
 
-		return new Point(xpos, ypos);
+		returnPos.set(xpos, ypos);
 	}
 
-	/*mc:function*/ indexToPos(index, dim) {
+	/*mc:function*/ indexToPos(index, dim, returnPos) {
 		var x = index % dim.width;
 		var y = (index - x) / dim.width;
-		return new Point(x, y);
+
+		returnPos.set(x, y);
 	}
 
 }
