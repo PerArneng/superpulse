@@ -14,7 +14,8 @@ class Log {
 	}
 
 	/*mc:function*/ log(str) {
-		console.log(str); //mc:System.println(str);
+		var strToLog = this.name + /*mc: " ## used:" + System.getSystemStats().usedMemory + " ## free:" + System.getSystemStats().freeMemory +*/ ": " + str;
+		console.log(strToLog); //mc:System.println(strToLog);
 	}
 
 }
