@@ -10,6 +10,10 @@ class Log {
 
 	/*mc:function*/ logValue(name, value) {
 		var str = "" + name + ": " + value;
+		this.log(str);
+	}
+
+	/*mc:function*/ log(str) {
 		console.log(str); //mc:System.println(str);
 	}
 
