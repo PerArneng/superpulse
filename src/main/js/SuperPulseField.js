@@ -78,21 +78,21 @@ class SuperPulseField /*mc:extends WatchUi.DataField*/ {
 
 	  	this.std.draw(dc, this.bounds, minor);
 
-	  	if (major.indexOf("2") == 0) {
+	  	if (major.find("2") == 0) {
 	  		dc.setColor(Graphics.COLOR_BLACK, Graphics.COLOR_WHITE);
 	  		this.std.draw(dc, this.topMajorBounds, "2");
 	  		dc.setColor(Graphics.COLOR_LT_GRAY, Graphics.COLOR_WHITE);
 	  		this.std.draw(dc, this.middleMajorBounds, "1");
 	  		dc.setColor(Graphics.COLOR_LT_GRAY, Graphics.COLOR_WHITE);
 	  		this.std.draw(dc, this.bottomMajorBounds, "0");
-	  	} else if (major.indexOf("1") == 0) {
+	  	} else if (major.find("1") == 0) {
 	  		dc.setColor(Graphics.COLOR_LT_GRAY, Graphics.COLOR_WHITE);
 	  		this.std.draw(dc, this.topMajorBounds, "2");
 	  		dc.setColor(Graphics.COLOR_BLACK, Graphics.COLOR_WHITE);
 	  		this.std.draw(dc, this.middleMajorBounds, "1");
 	  		dc.setColor(Graphics.COLOR_LT_GRAY, Graphics.COLOR_WHITE);
 	  		this.std.draw(dc, this.bottomMajorBounds, "0");
-	  	} else if (major.indexOf("0") == 0) {
+	  	} else if (major.find("0") == 0) {
 	  		dc.setColor(Graphics.COLOR_LT_GRAY, Graphics.COLOR_WHITE);
 	  		this.std.draw(dc, this.topMajorBounds, "2");
 	  		dc.setColor(Graphics.COLOR_LT_GRAY, Graphics.COLOR_WHITE);
