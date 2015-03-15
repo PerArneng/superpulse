@@ -4,12 +4,15 @@ class ScalableTextDrawer {
 	/*mc:var log;*/
 	/*mc:var font;*/
 	/*mc:var vdisp;*/
+	/*mc:var currentChar;*/
 
 
 	constructor() { //mc:function initialize() {
 		this.log = new Log("ScalableTextDrawer");
 		this.font = new Font();
 		this.vdisp = new VirtualDisplay();
+		this.currentChar = new Array(15); //mc:self.currentChar = new [15];
+
 	}
 
 	/*mc:function*/ draw(dctx, bounds, heartRate) {
@@ -23,17 +26,15 @@ class ScalableTextDrawer {
 									charDim.height);		
 		var targetDim = bounds.getDimension();
 						
-		var currentChar = new Array(bytesPerChar); //mc:var currentChar = new [bytesPerChar];
-
 		var pxDim = this.vdisp.pixelDimensions(virtDim, targetDim);
 
 		for (var i=0;i<textLength;i++) {
 			var chr = text.substring(i, i + 1);
 
-			this.font.getCharData(chr, currentChar);
+			this.font.getCharData(chr, this.currentChar);
 
 			for (var n=0;n<bytesPerChar;n++) {
-				var doDraw = currentChar[n];
+				var doDraw = this.currentChar[n];
 				if (doDraw > 0) {
 					var charPos = this.vdisp.indexToPos(n, charDim);
 					var pos = new Point(charPos.x + (i * (charDim.width + 1)), charPos.y);
