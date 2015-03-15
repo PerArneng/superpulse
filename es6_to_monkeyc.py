@@ -13,7 +13,7 @@ def main():
     print "es6_to_monkeyc: %s ==> %s" % (args.input, args.output)
 
     replacements = [
-        RegexReplacement(".*//mc:(.*)$", wholeLineReplacement),
+        RegexReplacement("^(\s*).*//mc:(.*)$", wholeLineReplacement),
         RegexReplacement("(.*)/\*mc:.*\*/(.*)", inPlaceReplacement),
         RegexReplacement(".*this\.[a-zA-Z0-9_]+.*", thisReplacement),
     ]
@@ -38,7 +38,7 @@ def inPlaceReplacement(match, line):
     return '%s' % (line.replace('/*mc:', '').replace('*/', ''))
 
 def wholeLineReplacement(match, line):
-    return '%s' % (match.group(1))
+    return '%s%s' % (match.group(1),match.group(2))
 
 def thisReplacement(match, line):
     return '%s' % (line.replace('this.', 'self.'))
