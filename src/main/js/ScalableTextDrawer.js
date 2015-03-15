@@ -6,12 +6,10 @@ class ScalableTextDrawer {
 	/*mc:var vdisp;*/
 	/*mc:var currentChar;*/
 	/*mc:var charPos;*/
-	/*mc:var targetPos;*/
 	/*mc:var pos;*/
-	/*mc:var virtDim;*/
-	/*mc:var pxDim;*/
 	/*mc:var charDim;*/
-	/*mc:var targetDim;*/
+	/*mc:var pixelToDraw;*/
+
 
 	constructor() { //mc:function initialize() {
 		this.log = new Log("ScalableTextDrawer");
@@ -20,11 +18,8 @@ class ScalableTextDrawer {
 		this.currentChar = new Array(15); //mc:self.currentChar = new [15];
 		this.charPos = new Point(0, 0);
 		this.pos = new Point(0, 0);
-		this.virtDim = new Dimension(0, 0);
-		this.pxDim = new Dimension(0, 0);
 		this.charDim = new Dimension(3, 5);
-		this.targetDim = new Dimension(0, 0);
-		this.targetPos = new Point(0, 0);
+		this.pixelToDraw = new Rectangle(0, 0, 0, 0);
 	}
 
 	/*mc:function*/ draw(dctx, bounds, heartRate) {
@@ -33,10 +28,10 @@ class ScalableTextDrawer {
   		var textLength = text.length/*mc:()*/;
 		var bytesPerChar = 15;		
 
-		this.virtDim.set(textLength * this.charDim.width + (textLength - 1), this.charDim.height);		
-		bounds.getDimension(this.targetDim);
-						
-		this.vdisp.pixelDimensions(this.virtDim, this.targetDim, this.pxDim);
+		this.vdisp.update(
+			textLength * this.charDim.width + (textLength - 1), this.charDim.height,
+			bounds
+		);
 
 		for (var i=0;i<textLength;i++) {
 			var chr = text.substring(i, i + 1);
@@ -46,17 +41,24 @@ class ScalableTextDrawer {
 			for (var n=0;n<bytesPerChar;n++) {
 				var doDraw = this.currentChar[n];
 				if (doDraw > 0) {
-					this.vdisp.indexToPos(n, this.charDim, this.charPos);
+					this.indexToPos(n, this.charDim, this.charPos);
 					this.pos.set(this.charPos.x + (i * (this.charDim.width + 1)), this.charPos.y);
 
-					this.vdisp.translatePixel(this.pos, this.virtDim, bounds, this.targetDim, this.pxDim, this.targetPos);
+					this.vdisp.getPixel(this.pos, this.pixelToDraw);
 					
-					dctx.fillRectangle(this.targetPos.x, this.targetPos.y, this.pxDim.width, this.pxDim.height);
+					dctx.fillRectangle(this.pixelToDraw.x, this.pixelToDraw.y, this.pixelToDraw.width, this.pixelToDraw.height);
 				}
 			}
 
 		}
 
+	}
+
+	/*mc:function*/ indexToPos(index, dim, returnPos) {
+		var x = index % dim.width;
+		var y = (index - x) / dim.width;
+
+		returnPos.set(x, y);
 	}
 
 }

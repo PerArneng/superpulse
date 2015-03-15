@@ -1,27 +1,38 @@
 
 class VirtualDisplay {
 	
-	/*mc:function*/ pixelDimensions(virtDim, targetDim, returnDim) {
+	/*mc:var log;*/
+	/*mc:var dim;*/
+	/*mc:var targetRect;*/
+	/*mc:var pxlDim;*/
 
-		var pixelWidth = targetDim.width / virtDim.width;
-		var pixelHeight = targetDim.height / virtDim.height;
-
-		returnDim.set(pixelWidth, pixelHeight);
+	constructor() { //mc:function initialize() {
+		this.log = new Log("VirtualDisplay");
+		this.dim = new Dimension(0, 0);
+		this.targetRect = new Rectangle(0, 0, 0, 0);
+		this.pxlDim  = new Dimension(0, 0);
 	}
 
-	/*mc:function*/ translatePixel(point, virtDim, targetBounds, targetDim, pxlDim, returnPos) {
-
-		var xpos = point.x * pxlDim.width + targetBounds.x;
-		var ypos = point.y * pxlDim.height + targetBounds.y;
-
-		returnPos.set(xpos, ypos);
+	/*mc:function*/ update(width, height, targetBounds) {
+		this.dim.set(width, height);
+		this.targetRect.set(targetBounds.x, targetBounds.y, targetBounds.width, targetBounds.height);
+		this.updatePixelDimensions();
 	}
 
-	/*mc:function*/ indexToPos(index, dim, returnPos) {
-		var x = index % dim.width;
-		var y = (index - x) / dim.width;
+	/*mc:function*/ updatePixelDimensions() {
 
-		returnPos.set(x, y);
+		var pixelWidth = this.targetRect.width / this.dim.width;
+		var pixelHeight = this.targetRect.height / this.dim.height;
+
+		this.pxlDim.set(pixelWidth, pixelHeight);
+	}
+
+	/*mc:function*/ getPixel(point, returnPixel) {
+
+		var xpos = point.x * this.pxlDim.width + this.targetRect.x;
+		var ypos = point.y * this.pxlDim.height + this.targetRect.y;
+
+		returnPixel.set(xpos, ypos, this.pxlDim.width, this.pxlDim.height);
 	}
 
 }
