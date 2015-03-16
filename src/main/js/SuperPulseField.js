@@ -15,10 +15,11 @@ class SuperPulseField /*mc:extends WatchUi.DataField*/ {
 	//mc:var middleMajorBounds;
 	//mc:var bottomMajorBounds;
 	/*mc:var log;*/
+	/*mc:var hr;*/
 
 	constructor() { //mc:function initialize() {
 		this.log = new Log("SuperPulseField");
-    	this.nfo = null;
+    	this.hr = "000";
     	this.std = new ScalableTextDrawer();
     	this.oldWidth = -555;
     	this.oldHeight = -555;
@@ -30,8 +31,12 @@ class SuperPulseField /*mc:extends WatchUi.DataField*/ {
   	}
 
 	/*mc:function*/ compute(info) {
-  		this.nfo = info;
-  	}
+		if (info != null) {
+			if (info.currentHeartRate != null) {
+				this.hr = "" + info.currentHeartRate;
+			}
+		}  	
+	}
 
   	/*mc:function*/ calculateBounds(width, height) {
 
@@ -61,19 +66,14 @@ class SuperPulseField /*mc:extends WatchUi.DataField*/ {
   		dc.clear();
   	  	dc.setColor(Graphics.COLOR_BLACK, Graphics.COLOR_WHITE);
 
-  		var hr = "000";
-  		if (this.nfo.currentHeartRate != null) {
-  			hr = "" + this.nfo.currentHeartRate;
-  		}
-
   		var major = "0";
   		var minor = "00";
-  		if (hr.length/*mc:()*/ == 3) {
-  			major = hr.substring(0, 1);
-  			minor = hr.substring(1, 3);
+  		if (this.hr.length/*mc:()*/ == 3) {
+  			major = this.hr.substring(0, 1);
+  			minor = this.hr.substring(1, 3);
   		} else {
   			major = "0";
-  			minor = hr;
+  			minor = this.hr;
   		}
 
 	  	this.std.draw(dc, this.bounds, minor);
