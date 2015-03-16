@@ -31,11 +31,10 @@ class SuperPulseField /*mc:extends WatchUi.DataField*/ {
   	}
 
 	/*mc:function*/ compute(info) {
-		if (info != null) {
-			if (info.currentHeartRate != null) {
-				this.hr = "" + info.currentHeartRate;
-			}
-		}  	
+		if (info == null) {return;}
+		if (info.currentHeartRate == null) {return;}
+		/*mc:if (!(info.currentHeartRate instanceof Number)) { return; } */
+		this.hr = "" + info.currentHeartRate;  	
 	}
 
   	/*mc:function*/ calculateBounds(width, height) {
