@@ -19,6 +19,8 @@ class SuperPulseField /*mc:extends WatchUi.DataField*/ {
 
 	constructor() { //mc:function initialize() {
 		this.log = new Log("SuperPulseField");
+		this.log.log("initialize");
+
     	this.hr = "000";
     	this.std = new ScalableTextDrawer();
     	this.oldWidth = -555;
@@ -28,16 +30,32 @@ class SuperPulseField /*mc:extends WatchUi.DataField*/ {
   		this.topMajorBounds = new Rectangle(0,0,0,0);
   		this.middleMajorBounds = new Rectangle(0,0,0,0);
   		this.bottomMajorBounds = new Rectangle(0,0,0,0);
+  		this.log.log("initialize finished");
+
   	}
 
 	/*mc:function*/ compute(info) {
+
+		//this.log.logValue("info", info);
+
 		if (info == null) {return;}
+
+		//this.log.logValue("info.currentHeartRate", info.currentHeartRate);
+
 		if (info.currentHeartRate == null) {return;}
+
+
 		/*mc:if (!(info.currentHeartRate instanceof Number)) { return; } */
 		this.hr = "" + info.currentHeartRate;  	
+		//this.log.logValue("hr", info);
+
 	}
 
   	/*mc:function*/ calculateBounds(width, height) {
+
+		//this.log.logValue("width", width);
+		//this.log.logValue("height", height);
+
 
   		if (width != this.oldWidth || height != this.oldHeight) {
   			//this.log.logValue("recalc", "now");
@@ -58,6 +76,7 @@ class SuperPulseField /*mc:extends WatchUi.DataField*/ {
   	}
   
   	/*mc:function*/ onUpdate(dc) {
+		//this.log.logValue("dc", dc);
 
 		this.calculateBounds(dc.getWidth(), dc.getHeight());
 

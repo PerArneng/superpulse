@@ -6,7 +6,7 @@ class SuperPulseApp /*mc:extends Application.AppBase*/ {
     
     constructor() { //mc:function initialize() {
         this.log = new Log("SuperPulseApp");
-        this.log.logValue("AppVersion", "1.4");
+        this.log.logValue("AppVersion", "1.5");
     }
 
 

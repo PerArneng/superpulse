@@ -8,9 +8,11 @@ class VirtualDisplay {
 
 	constructor() { //mc:function initialize() {
 		this.log = new Log("VirtualDisplay");
+		this.log.log("initialize");
 		this.dim = new Dimension(0, 0);
 		this.targetRect = new Rectangle(0, 0, 0, 0);
 		this.pxlDim  = new Dimension(0, 0);
+		this.log.log("initialize finished");
 	}
 
 	/*mc:function*/ update(width, height, targetBounds) {

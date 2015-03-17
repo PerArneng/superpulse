@@ -13,6 +13,7 @@ class ScalableTextDrawer {
 
 	constructor() { //mc:function initialize() {
 		this.log = new Log("ScalableTextDrawer");
+		this.log.log("initialize");
 		this.font = new Font();
 		this.vdisp = new VirtualDisplay();
 		this.currentChar = new Array(15); //mc:self.currentChar = new [15];
@@ -20,6 +21,7 @@ class ScalableTextDrawer {
 		this.pos = new Point(0, 0);
 		this.charDim = new Dimension(3, 5);
 		this.pixelToDraw = new Rectangle(0, 0, 0, 0);
+		this.log.log("initialize finished");
 	}
 
 	/*mc:function*/ draw(dctx, bounds, heartRate) {
